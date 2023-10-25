@@ -6,13 +6,13 @@ import secrets
 import mimetypes
 from aiohttp import web
 from aiohttp.http_exceptions import BadStatusLine
-from Adarsh.bot import multi_clients, work_loads, StreamBot
-from Adarsh.server.exceptions import FIleNotFound, InvalidHash
-from Adarsh import StartTime, __version__
+from SiDoP.bot import multi_clients, work_loads, StreamBot
+from SiDoP.server.exceptions import FIleNotFound, InvalidHash
+from SiDoP import StartTime, __version__
 from ..utils.time_format import get_readable_time
 from ..utils.custom_dl import ByteStreamer
-from Adarsh.utils.render_template import render_page
-from Adarsh.vars import Var
+from SiDoP.utils.render_template import render_page
+from SiDoP.vars import Var
 
 
 routes = web.RouteTableDef()
