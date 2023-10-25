@@ -11,7 +11,7 @@ from .vars import Var
 from aiohttp import web
 from .server import web_server
 from .utils.keepalive import ping_server
-from Adarsh.bot.clients import initialize_clients
+from SiDoP.bot.clients import initialize_clients
 
 logging.basicConfig(
     level=logging.INFO,
@@ -21,7 +21,7 @@ logging.getLogger("aiohttp").setLevel(logging.ERROR)
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
 logging.getLogger("aiohttp.web").setLevel(logging.ERROR)
 
-ppath = "Adarsh/bot/plugins/*.py"
+ppath = "SiDoP/bot/plugins/*.py"
 files = glob.glob(ppath)
 StreamBot.start()
 loop = asyncio.get_event_loop()
@@ -45,12 +45,12 @@ async def start_services():
         with open(name) as a:
             patt = Path(a.name)
             plugin_name = patt.stem.replace(".py", "")
-            plugins_dir = Path(f"Adarsh/bot/plugins/{plugin_name}.py")
+            plugins_dir = Path(f"SiDoP/bot/plugins/{plugin_name}.py")
             import_path = ".plugins.{}".format(plugin_name)
             spec = importlib.util.spec_from_file_location(import_path, plugins_dir)
             load = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(load)
-            sys.modules["Adarsh.bot.plugins." + plugin_name] = load
+            sys.modules["SiDoP.bot.plugins." + plugin_name] = load
             print("Imported => " + plugin_name)
     if Var.ON_HEROKU:
         print("------------------ Starting Keep Alive Service ------------------")
@@ -65,7 +65,7 @@ async def start_services():
     print('\n')
     print('---------------------------------------------------------------------------------------------------------')
     print('---------------------------------------------------------------------------------------------------------')
-    print(' follow me for more such exciting bots! https://github.com/NobiDeveloper')
+    print(' follow me for more such exciting bots! ')
     print('---------------------------------------------------------------------------------------------------------')
     print('\n')
     print('----------------------- Service Started -----------------------------------------------------------------')
@@ -75,7 +75,7 @@ async def start_services():
     if Var.ON_HEROKU:
         print('                        app runnng on =>> {}'.format(Var.FQDN))
     print('---------------------------------------------------------------------------------------------------------')
-    print('Give a star to my repo https://github.com/NobiDeveloper/Nobita-Stream-Bot  also follow me for new bots')
+    print('Give a star ⭐')
     print('---------------------------------------------------------------------------------------------------------')
     await idle()
 
