@@ -1,8 +1,8 @@
-from Adarsh.vars import Var
-from Adarsh.bot import StreamBot
-from Adarsh.utils.human_readable import humanbytes
-from Adarsh.utils.file_properties import get_file_ids
-from Adarsh.server.exceptions import InvalidHash
+from SiDoP.vars import Var
+from SiDoP.bot import StreamBot
+from SiDoP.utils.human_readable import humanbytes
+from SiDoP.utils.file_properties import get_file_ids
+from SiDoP.server.exceptions import InvalidHash
 import urllib.parse
 import aiofiles
 import logging
