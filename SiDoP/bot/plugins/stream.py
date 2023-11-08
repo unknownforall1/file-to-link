@@ -2,16 +2,16 @@
 import os
 import asyncio
 from asyncio import TimeoutError
-from SiDoP.bot import StreamBot
-from SiDoP.utils.database import Database
-from SiDoP.utils.human_readable import humanbytes
-from SiDoP.vars import Var
+from Adarsh.bot import StreamBot
+from Adarsh.utils.database import Database
+from Adarsh.utils.human_readable import humanbytes
+from Adarsh.vars import Var
 from urllib.parse import quote_plus
 from pyrogram import filters, Client
 from pyrogram.errors import FloodWait, UserNotParticipant
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
-from SiDoP.utils.file_properties import get_name, get_hash, get_media_file_size
+from Adarsh.utils.file_properties import get_name, get_hash, get_media_file_size
 db = Database(Var.DATABASE_URL, Var.name)
 
 
@@ -20,11 +20,11 @@ pass_dict = {}
 pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 
 
-@StreamBot.on_message((filters.regex("JoinUs") | filters.command("JoinUs")) , group=4)
+@StreamBot.on_message((filters.regex("login🔑") | filters.command("login")) , group=4)
 async def login_handler(c: Client, m: Message):
     try:
         try:
-            ag = await m.reply_text("Now send me this text 👇.\n\n MOVIES_X_STORE \n\n(You can use /cancel command to cancel the process)")
+            ag = await m.reply_text("Now send me password.\n\n If You don't know check the MY_PASS Variable in heroku \n\n(You can use /cancel command to cancel the process)")
             _text = await c.listen(m.chat.id, filters=filters.text, timeout=90)
             if _text.text:
                 textp = _text.text
@@ -34,13 +34,13 @@ async def login_handler(c: Client, m: Message):
             else:
                 return
         except TimeoutError:
-            await ag.edit("I can't wait more for text, try again")
+            await ag.edit("I can't wait more for password, try again")
             return
         if textp == MY_PASS:
             await pass_db.add_user_pass(m.chat.id, textp)
-            ag_text = "yeah! you entered the text correctly"
+            ag_text = "yeah! you entered the password correctly"
         else:
-            ag_text = "Wrong text, try again"
+            ag_text = "Wrong password, try again"
         await ag.edit(ag_text)
     except Exception as e:
         print(e)
@@ -67,7 +67,7 @@ async def private_receive_handler(c: Client, m: Message):
             if user.status == "kicked":
                 await c.send_message(
                     chat_id=m.chat.id,
-                    text="You are banned!\n\n  **Contact Developer [Don](https://telegram.me/Movie_without_verify) he will help you.**",
+                    text="You are banned!\n\n  **Contact Developer [Nobita](https://telegram.me/Movie_without_verify) he will help you.**",
                     
                     disable_web_page_preview=True
                 )
@@ -90,7 +90,7 @@ async def private_receive_handler(c: Client, m: Message):
             await m.reply_text(e)
             await c.send_message(
                 chat_id=m.chat.id,
-                text="**sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ. ᴄᴏɴᴛᴀᴄᴛ ᴍʏ [ʙᴏss](https://telegram.me/Don_owner)**",
+                text="**sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ. ᴄᴏɴᴛᴀᴄᴛ ᴍʏ [ʙᴏss](https://telegram.me/don_owner)**",
                 
                 disable_web_page_preview=True)
             return
@@ -118,7 +118,7 @@ async def private_receive_handler(c: Client, m: Message):
             reply_markup=InlineKeyboardMarkup([
                 [InlineKeyboardButton("🖥️  ꜱᴛʀᴇᴀᴍ  🖥️", url=stream_link),
                  InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)],
-                [InlineKeyboardButton('🎪  Join Here  🎪', url='https://t.me/Movies_x_store')]])
+                [InlineKeyboardButton('🎪  JOIN US  🎪', url='https://t.me/movies_x_store')]])
         )
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
@@ -131,10 +131,10 @@ async def channel_receive_handler(bot, broadcast):
     if MY_PASS:
         check_pass = await pass_db.get_user_pass(broadcast.chat.id)
         if check_pass == None:
-            await broadcast.reply_text("Join Us first using /JoinUs cmd \n and send message MOVIES_X_STORE")
+            await broadcast.reply_text("Login first using /login cmd \n don\'t know the pass? request it from developer!")
             return
         if check_pass != MY_PASS:
-            await broadcast.reply_text("Wrong text, try again")
+            await broadcast.reply_text("Wrong password, login again")
             await pass_db.delete_user(broadcast.chat.id)
             
             return
@@ -158,7 +158,7 @@ async def channel_receive_handler(bot, broadcast):
                 [
                     [InlineKeyboardButton("🖥️  ꜱᴛʀᴇᴀᴍ  🖥️", url=stream_link),
                      InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)],
-                    [InlineKeyboardButton('🎪  Join Here 🎪', url='https://t.me/movies_x_store')]
+                    [InlineKeyboardButton('🎪  JOIN US  🎪', url='https://T.ME/MOVIES_X_STORE')]
                 ]
             )
         )
@@ -171,3 +171,4 @@ async def channel_receive_handler(bot, broadcast):
     except Exception as e:
         await bot.send_message(chat_id=Var.BIN_CHANNEL, text=f"**#ERROR_TRACKEBACK:** `{e}`", disable_web_page_preview=True)
         print(f"Cᴀɴ'ᴛ Eᴅɪᴛ Bʀᴏᴀᴅᴄᴀsᴛ Mᴇssᴀɢᴇ!\nEʀʀᴏʀ:  **Give me edit permission in updates and bin Channel!{e}**")
+in Channel!{e}**")
