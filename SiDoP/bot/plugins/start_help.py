@@ -37,6 +37,10 @@ else:
 @StreamBot.on_message((filters.private & filters.command("start") | filters.regex('start⚡️')))
 async def start(b, m):
     if not await db.is_user_exist(m.from_user.id):
+        await b.send_message(
+            chat_id=m.chat.id,
+            text="send file/video"
+        )
         await db.add_user(m.from_user.id)
         await pass_db.add_user_pass(m.chat.id)
         await pass_db.add_user_pass(m.chat.id, MOVIESXSTORE)
