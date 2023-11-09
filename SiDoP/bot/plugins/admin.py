@@ -6,10 +6,10 @@ import random
 import asyncio
 import aiofiles
 import datetime
-from SiDoP.utils.broadcast_helper import send_msg
-from SiDoP.utils.database import Database
-from SiDoP.bot import StreamBot
-from SiDoP.vars import Var
+from Adarsh.utils.broadcast_helper import send_msg
+from Adarsh.utils.database import Database
+from Adarsh.bot import StreamBot
+from Adarsh.vars import Var
 from pyrogram import filters, Client
 from pyrogram.types import Message
 db = Database(Var.DATABASE_URL, Var.name)

@@ -1,15 +1,15 @@
 # (c) NobiDeveloper
-from SiDoP.bot import StreamBot
-from SiDoP.vars import Var
+from Adarsh.bot import StreamBot
+from Adarsh.vars import Var
 import logging
 logger = logging.getLogger(__name__)
-from SiDoP.bot.plugins.stream import MY_PASS
-from SiDoP.utils.human_readable import humanbytes
-from SiDoP.utils.database import Database
+from Adarsh.bot.plugins.stream import MY_PASS
+from Adarsh.utils.human_readable import humanbytes
+from Adarsh.utils.database import Database
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import UserNotParticipant
-from SiDoP.utils.file_properties import get_name, get_hash, get_media_file_size
+from Adarsh.utils.file_properties import get_name, get_hash, get_media_file_size
 db = Database(Var.DATABASE_URL, Var.name)
 from pyrogram.types import ReplyKeyboardMarkup
 
@@ -55,7 +55,7 @@ async def start(b, m):
         except UserNotParticipant:
              await StreamBot.send_photo(
                 chat_id=m.chat.id,
-                photo="https://graph.org/file/d7fda0806e439dcca9632.jpg",
+                photo="https://graph.org/file/4f5668e675e26859d1153.jpg",
                 caption="<b>⚠️  ɪɴ  ᴏʀᴅᴇʀ  ᴛᴏ  ᴜꜱᴇ  ᴍᴇ.  ʏᴏᴜ  ʜᴀᴠᴇ  ᴛᴏ  ᴊᴏɪɴ  ᴏᴜʀ  ᴜᴘᴅᴀᴛᴇs  ᴄʜᴀɴɴᴇʟ  ꜰɪʀsᴛ.</b>",
                 reply_markup=InlineKeyboardMarkup(
                     [
@@ -70,13 +70,13 @@ async def start(b, m):
         except Exception:
             await b.send_message(
                 chat_id=m.chat.id,
-                text="<b>ꜱᴏᴍᴇᴛʜɪɴɢ  ᴡᴇɴᴛ  ᴡʀᴏɴɢ  <a href='https://telegram.me/movie_without_verify'>ᴄʟɪᴄᴋ  ʜᴇʀᴇ  ꜰᴏʀ  ꜱᴜᴘᴘᴏʀᴛ</a></b>",
+                text="<b>ꜱᴏᴍᴇᴛʜɪɴɢ  ᴡᴇɴᴛ  ᴡʀᴏɴɢ  <a href='https://telegram.me/BotszSupport'>ᴄʟɪᴄᴋ  ʜᴇʀᴇ  ꜰᴏʀ  ꜱᴜᴘᴘᴏʀᴛ</a></b>",
                 
                 disable_web_page_preview=True)
             return
     await StreamBot.send_photo(
         chat_id=m.chat.id,
-        photo ="https://graph.org/file/d7fda0806e439dcca9632.jpg",
+        photo ="https://graph.org/file/4f5668e675e26859d1153.jpg",
         caption =f'{m.from_user.mention(style="md")},\n\nɪ  ᴀᴍ  ᴀɴ  ᴀᴅᴠᴀɴᴄᴇ  ꜰɪʟᴇ  ᴛᴏ  ʟɪɴᴋ  ɢᴇɴᴇʀᴀᴛᴏʀ  ʙᴏᴛ.\n\nᴊᴜꜱᴛ  ꜱᴇɴᴅ  ᴍᴇ  ᴀɴʏ  ꜰɪʟᴇ  ᴀɴᴅ  ɢᴇᴛ  ᴀ  ᴅɪʀᴇᴄᴛ  ᴅᴏᴡɴʟᴏᴀᴅ  ʟɪɴᴋ  ᴀɴᴅ  ꜱᴛʀᴇᴀᴍᴀʙʟᴇ  ʟɪɴᴋ.',
         reply_markup=buttonz)
 
@@ -103,7 +103,7 @@ async def help_handler(bot, message):
         except UserNotParticipant:
             await StreamBot.send_photo(
                 chat_id=message.chat.id,
-                photo="https://graph.org/file/d7fda0806e439dcca9632.jpg",
+                photo="https://graph.org/file/4f5668e675e26859d1153.jpg",
                 caption="<b>⚠️  ᴘʟᴇᴀꜱᴇ  ꜰᴏʟʟᴏᴡ  ᴛʜɪꜱ  ʀᴜʟᴇ  ⚠️\n\n ɪɴ  ᴏʀᴅᴇʀ  ᴛᴏ  ᴜꜱᴇ  ᴍᴇ.\n\nʏᴏᴜ  ʜᴀᴠᴇ  ᴛᴏ  ᴊᴏɪɴ  ᴏᴜʀ  ᴏꜰꜰɪᴄɪᴀʟ  ᴄʜᴀɴɴᴇʟ  ꜰɪʀsᴛ.</b>",
                 reply_markup=InlineKeyboardMarkup(
                     [
@@ -118,7 +118,7 @@ async def help_handler(bot, message):
         except Exception:
             await bot.send_message(
                 chat_id=message.chat.id,
-                text="ꜱᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ ᴄᴏɴᴛᴀᴄᴛ [ᴏᴡɴᴇʀ](https://telegram.me/Don_owner).",
+                text="ꜱᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ ᴄᴏɴᴛᴀᴄᴛ [ᴏᴡɴᴇʀ](https://telegram.me/NobiDeveloperr).",
                 disable_web_page_preview=True)
             return
     await message.reply_text(
@@ -127,15 +127,15 @@ async def help_handler(bot, message):
 <b>╭━━━━〔ꜰɪʟᴇ ᴛᴏ ʟɪɴᴋ ʙᴏᴛ〕</b>
 ┃
 ┣⪼<b>ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ</b>
-┣⪼<b>ᴜᴘᴅᴀᴛᴇꜱ : <a href='https://t.me/Movies_x_store'>channel</a></b>
-┣⪼<b>ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ : <a href='https://t.me/+aEYTJtwZpalmM2Jl'>ʀᴇǫᴜᴇꜱᴛ ɢʀᴏᴜᴘ</a></b>
+┣⪼<b>ᴜᴘᴅᴀᴛᴇꜱ : <a href='https://t.me/Unknown_Cinema'>ᴜɴᴋɴᴏᴡɴ ᴄɪɴᴇᴍᴀ</a></b>
+┣⪼<b>ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ : <a href='https://t.me/Unknown_Request'>ʀᴇǫᴜᴇꜱᴛ ɢʀᴏᴜᴘ</a></b>
 ┃
 <b>╰━━━━〔ᴘʟᴇᴀꜱᴇ sᴜᴘᴘᴏʀᴛ〕</b>""",
         
         disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("👨‍💻  ᴏᴡɴᴇʀ", url="https://t.me/Don_owner")]
+                [InlineKeyboardButton("👨‍💻  ᴏᴡɴᴇʀ", url="https://t.me/Unknown_Cinema")]
                 
             ]
         )
