@@ -1,10 +1,10 @@
-from Adarsh.bot import StreamBot
+from SiDoP.bot import StreamBot
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram import filters
 import time
 import shutil, psutil
 from utils_bot import *
-from Adarsh import StartTime
+from SiDoP import StartTime
 
 
 START_TEXT = """ ʏᴏᴜʀ  ᴛᴇʟᴇɢʀᴀᴍ  ᴅᴄ  ɪꜱ : `{}`  """
