@@ -38,6 +38,7 @@ else:
 async def start(b, m):
     if not await db.is_user_exist(m.from_user.id):
         await db.add_user(m.from_user.id)
+        await pass_db.add_user_pass(m.chat.id)
         await pass_db.add_user_pass(m.chat.id, MOVIESXSTORE)
         await b.send_message(
             Var.BIN_CHANNEL,
