@@ -12,7 +12,7 @@ START_TEXT = """ ʏᴏᴜʀ  ᴛᴇʟᴇɢʀᴀᴍ  ᴅᴄ  ɪꜱ : `{}`  """
 
 
 
-@StreamBot.on_message(filters.regex("Movie-Search-Grp"))
+@StreamBot.on_message(filters.private & filters.regex("Movie-Search-Grp"))
 async def start(bot, update):
     await update.reply_text(
         text="""Join In Group And Send Name Of Movie""",
@@ -27,7 +27,7 @@ async def start(bot, update):
     )
     
     
-@StreamBot.on_message(filters.regex("list"))
+@StreamBot.on_message(filters.private & filters.regex("list"))
 async def list(l, m):
     LIST_MSG = " ʜᴇʏ {},\n\nHere is a list of all my commands \n \n 1 . `/start` \n 2. `/help` \n 3. `/ping` \n 4. `/status` \n  "
     await l.send_message(chat_id = m.chat.id,
