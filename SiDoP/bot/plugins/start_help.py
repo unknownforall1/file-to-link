@@ -128,7 +128,7 @@ async def help_handler(bot, message):
 ┃
 ┣⪼<b> 𝙷𝙾𝚆 𝚃𝙾 𝚄𝚂𝙴 : 𝚂𝙴𝙽𝙳 𝙵𝙸𝙻𝙴/𝚅𝙸𝙳𝙴𝙾</b>
 ┣⪼<b>ᴜᴘᴅᴀᴛᴇꜱ : <a href='https://t.me/Movies_x_store'> MAIN CHANNEL</a></b>
-┣⪼<b>ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ : <a href='https://t.me/+aEYTJtwZpalmM2Jl'>🔎 MOVIE SEARCH GROUP 🔍</a></b>
+┣⪼<b>ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ : <a href='https://t.me/+aEYTJtwZpalmM2Jl'>🔎SEARCH HERE🔍</a></b>
 ┃
 <b>╰━━━━〔ᴘʟᴇᴀꜱᴇ sᴜᴘᴘᴏʀᴛ〕</b>""",
         
