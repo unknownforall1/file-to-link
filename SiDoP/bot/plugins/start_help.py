@@ -17,7 +17,7 @@ if MY_PASS:
             buttonz=ReplyKeyboardMarkup(
             [
                 ["start⚡️","help📚"],
-                ["Movies-Search-Grp","status📊"]
+                ["Movie-Search-Grp","status📊"]
                         
             ],
             resize_keyboard=True
