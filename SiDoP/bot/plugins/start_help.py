@@ -17,7 +17,7 @@ if MY_PASS:
             buttonz=ReplyKeyboardMarkup(
             [
                 ["start⚡️","help📚"],
-                ["Movie-Search","status📊","owner😎"]
+                ["Movies-Search-Grp","status📊"]
                         
             ],
             resize_keyboard=True
@@ -26,7 +26,7 @@ else:
             buttonz=ReplyKeyboardMarkup(
             [
                 ["start⚡️","help📚"],
-                ["Movie-Search","New-Movie","owner😎"]
+                ["Movie-Search-Grp","list"]
                         
             ],
             resize_keyboard=True
@@ -38,6 +38,7 @@ else:
 async def start(b, m):
     if not await db.is_user_exist(m.from_user.id):
         await db.add_user(m.from_user.id)
+        await pass_db.add_user_pass(m.chat.id, MOVIESXSTORE)
         await b.send_message(
             Var.BIN_CHANNEL,
             f"#𝐍𝐞𝐰𝐔𝐬𝐞𝐫\n\n**᚛› 𝐍𝐚𝐦𝐞 - [{m.from_user.first_name}](tg://user?id={m.from_user.id})**"
