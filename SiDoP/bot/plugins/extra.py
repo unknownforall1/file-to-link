@@ -12,18 +12,22 @@ START_TEXT = """ ʏᴏᴜʀ  ᴛᴇʟᴇɢʀᴀᴍ  ᴅᴄ  ɪꜱ : `{}`  """
 
 
 
-@StreamBot.on_message(filters.regex("DC"))
+@StreamBot.on_message(filters.regex("Movie-Search-Grp"))
 async def start(bot, update):
-    text = START_TEXT.format(update.from_user.dc_id)
     await update.reply_text(
-        text=text,
+        text="""Join In Group And Send Name Of Movie""",
         disable_web_page_preview=True,
-        quote=True
+        quote=True,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("👨‍💻 Join Here", url="https://t.me/+aEYTJtwZpalmM2Jl")]
+                
+            ]
+        )
     )
-
     
     
-@StreamBot.on_message(filters.command("list"))
+@StreamBot.on_message(filters.regex("list"))
 async def list(l, m):
     LIST_MSG = " ʜᴇʏ {},\n\nHere is a list of all my commands \n \n 1 . `/start` \n 2. `/help` \n 3. `/ping` \n 4. `/status` \n  "
     await l.send_message(chat_id = m.chat.id,
@@ -32,7 +36,7 @@ async def list(l, m):
     )
     
     
-@StreamBot.on_message(filters.command("ping📡"))
+@StreamBot.on_message(filters.command("Ping"))
 async def ping(b, m):
     start_t = time.time()
     ag = await m.reply_text("....")
