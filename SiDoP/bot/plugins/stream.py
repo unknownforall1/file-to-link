@@ -20,7 +20,7 @@ pass_dict = {}
 pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 
 
-@StreamBot.on_message((filters.private | filters.group ) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)
+@StreamBot.on_message((filters.channel | filters.group ) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)
 async def private_receive_handler(c: Client, m: Message):
     if not await 1==2:
         await c.send_message(
