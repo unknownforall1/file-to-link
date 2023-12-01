@@ -22,7 +22,7 @@ pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 
 @StreamBot.on_message((filters.channel | filters.group ) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)
 async def private_receive_handler(c: Client, m: Message):
-    if not await 1==2:
+    if not 1==2:
         await c.send_message(
             Var.BIN_CHANNEL,
             f"Channel work done! : \n\n Name : Channel work Started Your Bot!!"
