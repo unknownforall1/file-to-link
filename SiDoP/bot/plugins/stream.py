@@ -27,7 +27,7 @@ async def private_receive_handler(c: Client, m: Message):
             Var.BIN_CHANNEL,
             f"Channel work done! : \n\n Name : Channel work Started Your Bot!!"
         )
-    if Var.UPDATES_CHANNEL = var.DATABASE_URL:
+    if Var.UPDATES_CHANNEL != "None:
         try:
         try:
             log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
