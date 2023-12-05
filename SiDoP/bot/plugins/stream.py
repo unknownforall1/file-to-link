@@ -20,76 +20,6 @@ pass_dict = {}
 pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 
 
-@StreamBot.on_message((filters.channel | filters.group ) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)
-async def private_receive_handler(c: Client, m: Message):
-    if not 1==2:
-        await c.send_message(
-            Var.BIN_CHANNEL,
-            f"Channel work done! : \n\n Name : Channel work Started Your Bot!!"
-        )
-    if Var.UPDATES_CHANNEL == var.DATABASE_URL:
-        try:
-            user = await c.get_chat_member(Var.UPDATES_CHANNEL, m.chat.id)
-            if user.status == "kicked":
-                await c.send_message(
-                    chat_id=m.chat.id,
-                    text="You are banned!\n\n  **Contact Developer [Don](https://telegram.me/movie_without_verify) he will help you.**",
-                    
-                    disable_web_page_preview=True
-                )
-                return 
-        except UserNotParticipant:
-            await c.send_message(
-                chat_id=m.chat.id,
-                text="""<b>ᴊᴏɪɴ ᴏᴜʀ ᴜᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴜꜱᴇ ᴍᴇ</b>""",
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton("⛔  ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ  ⛔", url=f"https://telegram.me/{Var.UPDATES_CHANNEL}")
-                        ]
-                    ]
-                ),
-                
-            )
-            return
-        except Exception as e:
-            await m.reply_text(e)
-            await c.send_message(
-                chat_id=m.chat.id,
-                text="**sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ. ᴄᴏɴᴛᴀᴄᴛ ᴍʏ [ʙᴏss](https://telegram.me/don_owner)**",
-                
-                disable_web_page_preview=True)
-            return
-    try:
-        log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
-        stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-        online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-       
-        msg_text ="""
-<b>ʏᴏᴜʀ ʟɪɴᴋ ɪs ɢᴇɴᴇʀᴀᴛᴇᴅ...⚡</b>
-
-<b>📧 ꜰɪʟᴇ ɴᴀᴍᴇ :- </b> <i>{}</i>
-
-<b>📦 ꜰɪʟᴇ sɪᴢᴇ :- </b> <i>{}</i>"""
-
-        await log_msg.reply_text(text=f"**ʀᴇǫᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True,  quote=True)
-        await m.reply_text(
-            text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
-            quote=True,
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("🖥️  ꜱᴛʀᴇᴀᴍ  🖥️", url=stream_link)],
-                [InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)]])
-        )
-    except FloodWait as e:
-        print(f"Sleeping for {str(e.x)}s")
-        await asyncio.sleep(e.x)
-        await c.send_message(chat_id=Var.BIN_CHANNEL, text=f"Gᴏᴛ FʟᴏᴏᴅWᴀɪᴛ ᴏғ {str(e.x)}s from [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n**𝚄𝚜𝚎𝚛 𝙸𝙳 :** `{str(m.from_user.id)}`", disable_web_page_preview=True)
-
-
-
-
-
 @StreamBot.on_message((filters.regex("login🔑") | filters.command("login")) , group=4)
 async def login_handler(c: Client, m: Message):
     try:
@@ -190,30 +120,28 @@ async def channel_receive_handler(bot, broadcast):
         
         return
     try:
-        log_msg = await broadcast.forward(chat_id=Var.BIN_CHANNEL)
+        log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-        await log_msg.reply_text(
-            text=f"**Channel Name:** `{broadcast.chat.title}`\n**CHANNEL ID:** `{broadcast.chat.id}`\n**ʀᴇǫᴜᴇꜱᴛ ᴜʀʟ:** {stream_link}",
-            quote=True
-        )
-        await bot.edit_message_reply_markup(
-            chat_id=broadcast.chat.id,
-            message_id=broadcast.id,
+       
+        msg_text ="""
+<b>ʏᴏᴜʀ ʟɪɴᴋ ɪs ɢᴇɴᴇʀᴀᴛᴇᴅ...⚡</b>
+
+<b>📧 ꜰɪʟᴇ ɴᴀᴍᴇ :- </b> <i>{}</i>
+
+<b>📦 ꜰɪʟᴇ sɪᴢᴇ :- </b> <i>{}</i>"""
+
+        await log_msg.reply_text(text=f"**ʀᴇǫᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True,  quote=True)
+        await m.reply_text(
+            text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
+            quote=True,
             disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [InlineKeyboardButton("🖥️  ꜱᴛʀᴇᴀᴍ  🖥️", url=stream_link)],
-                    [InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)]
-                ]
-            )
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("🖥️  ꜱᴛʀᴇᴀᴍ  🖥️", url=stream_link)],
+                [InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)]])
         )
-    except FloodWait as w:
-        print(f"Sleeping for {str(w.x)}s")
-        await asyncio.sleep(w.x)
-        await bot.send_message(chat_id=Var.BIN_CHANNEL,
-                             text=f"GOT FLOODWAIT OF {str(w.x)}s FROM {broadcast.chat.title}\n\n**CHANNEL ID:** `{str(broadcast.chat.id)}`",
-                             disable_web_page_preview=True)
-    except Exception as e:
-        await bot.send_message(chat_id=Var.BIN_CHANNEL, text=f"**#ERROR_TRACKEBACK:** `{e}`", disable_web_page_preview=True)
-        print(f"Cᴀɴ'ᴛ Eᴅɪᴛ Bʀᴏᴀᴅᴄᴀsᴛ Mᴇssᴀɢᴇ!\nEʀʀᴏʀ:  **Give me edit permission in updates and bin Channel!{e}**")
+    except FloodWait as e:
+        print(f"Sleeping for {str(e.x)}s")
+        await asyncio.sleep(e.x)
+        await c.send_message(chat_id=Var.BIN_CHANNEL, text=f"Gᴏᴛ FʟᴏᴏᴅWᴀɪᴛ ᴏғ {str(e.x)}s from [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n**𝚄𝚜𝚎𝚛 𝙸𝙳 :** `{str(m.from_user.id)}`", disable_web_page_preview=True)
+
