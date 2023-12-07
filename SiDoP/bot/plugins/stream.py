@@ -162,12 +162,11 @@ async def receive_handler(c: Client, m: Message):
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
        
         msg_text ="""
-<b>ʏᴏᴜʀ ʟɪɴᴋ ɪs ɢᴇɴᴇʀᴀᴛᴇᴅ...⚡</b>
+<b>ꜰɪʟᴇ ɴᴀᴍᴇ </b> :- <i>{}</i>
 
-<b>📧 ꜰɪʟᴇ ɴᴀᴍᴇ :- </b> <i>{}</i>
+<b> ꜰɪʟᴇ sɪᴢᴇ </b> :- <i>{}</i>
 
-<b>📦 ꜰɪʟᴇ sɪᴢᴇ :- </b> <i>{}</i>
-<b> By @Movies_X_store </b>"""
+<b> By </b> @Movies_X_store """
 
         await log_msg.reply_text(text=f"**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True,  quote=True)
         await m.reply_text(
@@ -175,8 +174,8 @@ async def receive_handler(c: Client, m: Message):
             quote=True,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("🖥️  ꜱᴛʀᴇᴀᴍ  🖥️", url=stream_link)],
-                [InlineKeyboardButton('🖇️ ᴊᴏɪɴ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ 🖇️', url=ChannelLink)],
+                [InlineKeyboardButton("🖥️ ꜱᴛʀᴇᴀᴍ 𝙼𝙾𝚅𝙸𝙴 𝙾𝙽𝙻𝙸𝙽𝙴 🖥️", url=stream_link)],
+                [InlineKeyboardButton('Rᴇǫᴜᴇsᴛ Iɴ Bᴀᴄᴋᴜᴘ Cʜᴀɴɴᴇʟ', url=ChannelLink)],
                 [InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)]])
         )
     except FloodWait as e:
