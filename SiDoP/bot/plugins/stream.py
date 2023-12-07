@@ -20,105 +20,7 @@ pass_dict = {}
 pass_db = Database(Var.DATABASE_URL, "ag_passwords")
 
 
-@StreamBot.on_message((filters.channel | filters.group ) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)
-async def private_receive_handler(c: Client, m: Message):
-    if not 1==2:
-        await c.send_message(
-            Var.BIN_CHANNEL,
-            f"Channel work done! : \n\n Name : Channel work Started Your Bot!!"
-        )
-    if Var.UPDATES_CHANNEL != "None":
-        try:
-            user = await c.get_chat_member(Var.UPDATES_CHANNEL, m.chat.id)
-            if user.status == "kicked":
-                await c.send_message(
-                    chat_id=m.chat.id,
-                    text="You are banned!\n\n  **Contact Developer [Don](https://telegram.me/movie_without_verify) he will help you.**",
-                    
-                    disable_web_page_preview=True
-                )
-                return 
-        except UserNotParticipant:
-            await c.send_message(
-                chat_id=m.chat.id,
-                text="""<b>ᴊᴏɪɴ ᴏᴜʀ ᴜᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴜꜱᴇ ᴍᴇ</b>""",
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton("⛔  ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ  ⛔", url=f"https://telegram.me/{Var.UPDATES_CHANNEL}")
-                        ]
-                    ]
-                ),
-                
-            )
-            return
-        except Exception as e:
-            await m.reply_text(e)
-            await c.send_message(
-                chat_id=m.chat.id,
-                text="**sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ. ᴄᴏɴᴛᴀᴄᴛ ᴍʏ [ʙᴏss](https://telegram.me/don_owner)**",
-                
-                disable_web_page_preview=True)
-            return
-    try:
-        log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
-        stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-        online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
-       
-        msg_text ="""
-<b>ʏᴏᴜʀ ʟɪɴᴋ ɪs ɢᴇɴᴇʀᴀᴛᴇᴅ...⚡</b>
-
-<b>📧 ꜰɪʟᴇ ɴᴀᴍᴇ :- </b> <i>{}</i>
-
-<b>📦 ꜰɪʟᴇ sɪᴢᴇ :- </b> <i>{}</i>"""
-
-        await log_msg.reply_text(text=f"**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True,  quote=True)
-        await m.reply_text(
-            text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
-            quote=True,
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("🖥️  ꜱᴛʀᴇᴀᴍ  🖥️", url=stream_link)],
-                [InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)]])
-        )
-    except FloodWait as e:
-        print(f"Sleeping for {str(e.x)}s")
-        await asyncio.sleep(e.x)
-        await c.send_message(chat_id=Var.BIN_CHANNEL, text=f"Gᴏᴛ FʟᴏᴏᴅWᴀɪᴛ ", disable_web_page_preview=True)
-
-
-
-
-
-
-
-
-@StreamBot.on_message((filters.regex("login🔑") | filters.command("login")) , group=4)
-async def login_handler(c: Client, m: Message):
-    try:
-        try:
-            ag = await m.reply_text("Now send me password.\n\n If You don't know check the MY_PASS Variable in heroku \n\n(You can use /cancel command to cancel the process)")
-            _text = await c.listen(m.chat.id, filters=filters.text, timeout=90)
-            if _text.text:
-                textp = _text.text
-                if textp == "/cancel":
-                   await ag.edit("Process Cancelled Successfully")
-                   return
-            else:
-                return
-        except TimeoutError:
-            await ag.edit("I can't wait more for password, try again")
-            return
-        if textp == MY_PASS:
-            await pass_db.add_user_pass(m.chat.id, textp)
-            ag_text = "yeah! you entered the password correctly"
-        else:
-            ag_text = "Wrong password, try again"
-        await ag.edit(ag_text)
-    except Exception as e:
-        print(e)
-
-@StreamBot.on_message((filters.private | filters.group ) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)
+@StreamBot.on_message((filters.private) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)
 async def private_receive_handler(c: Client, m: Message):
     if not await db.is_user_exist(m.from_user.id):
         await db.add_user(m.from_user.id)
@@ -220,3 +122,31 @@ async def channel_receive_handler(bot, broadcast):
     except Exception as e:
         await bot.send_message(chat_id=Var.BIN_CHANNEL, text=f"**#ERROR_TRACKEBACK:** `{e}`", disable_web_page_preview=True)
         print(f"Cᴀɴ'ᴛ Eᴅɪᴛ Bʀᴏᴀᴅᴄᴀsᴛ Mᴇssᴀɢᴇ!\nEʀʀᴏʀ:  **Give me edit permission in updates and bin Channel!{e}**")
+
+@StreamBot.on_message((filters.channel | filters.group ) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)
+async def channel_receive_handlers(c :Client, m :Message):
+    try:
+        log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
+        stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+        online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+       
+        msg_text ="""
+<b>ʏᴏᴜʀ ʟɪɴᴋ ɪs ɢᴇɴᴇʀᴀᴛᴇᴅ...⚡</b>
+
+<b>📧 ꜰɪʟᴇ ɴᴀᴍᴇ :- </b> <i>{}</i>
+
+<b>📦 ꜰɪʟᴇ sɪᴢᴇ :- </b> <i>{}</i>"""
+
+        await log_msg.reply_text(text=f"**ʀᴇǫᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True,  quote=True)
+        await m.reply_text(
+            text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
+            quote=True,
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("🖥️  ꜱᴛʀᴇᴀᴍ  🖥️", url=stream_link)],
+                [InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)]])
+        )
+    except FloodWait as e:
+        print(f"Sleeping for {str(e.x)}s")
+        await asyncio.sleep(e.x)
+        await c.send_message(chat_id=Var.BIN_CHANNEL, text=f"Gᴏᴛ FʟᴏᴏᴅWᴀɪᴛ ᴏғ {str(e.x)}s from [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n\n**𝚄𝚜𝚎𝚛 𝙸𝙳 :** `{str(m.from_user.id)}`", disable_web_page_preview=True)
