@@ -137,14 +137,15 @@ async def channel_receive_handlers(c :Client, m :Message):
 
 <b>📦 ꜰɪʟᴇ sɪᴢᴇ :- </b> <i>{}</i>"""
 
-        await log_msg.reply_text(text=f"**ʀᴇǫᴜᴇꜱᴛᴇᴅ ʙʏ :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})\n**Uꜱᴇʀ ɪᴅ :** `{m.from_user.id}`\n**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True,  quote=True)
+        await log_msg.reply_text(text=f"**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True,  quote=True)
         await m.reply_text(
             text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
             quote=True,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("🖥️  ꜱᴛʀᴇᴀᴍ  🖥️", url=stream_link)],
-                [InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ  📥', url=online_link)]])
+                [InlineKeyboardButton("🖥️  ꜱᴛʀᴇᴀᴍ Mᴏᴠɪᴇ  🖥️", url=stream_link)],
+                [InlineKeyboardButton("📌 ᴊᴏɪɴ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ 📌", url=https://t.me/Movies_x_store)],
+                [InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ Mᴏᴠɪᴇ  📥', url=online_link)]])
         )
     except FloodWait as e:
         print(f"Sleeping for {str(e.x)}s")
