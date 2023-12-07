@@ -162,7 +162,9 @@ async def receive_handler(c: Client, m: Message):
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
        
         msg_text ="""
-<b>ꜰɪʟᴇ ɴᴀᴍᴇ </b> :- <i>{}</i>
+<b>𝙈𝙊𝙑𝙄𝙀/𝙎𝙀𝙍𝙄𝙀𝙎 𝙉𝘼𝙈𝙀</b> 👇🏻
+    
+    <i>{}</i>
 
 <b> ꜰɪʟᴇ sɪᴢᴇ </b> :- <i>{}</i>
 
