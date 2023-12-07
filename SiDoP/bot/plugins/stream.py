@@ -128,6 +128,7 @@ async def channel_receive_handlers(c :Client, m :Message):
     try:
         log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
         stream_link = f"{Var.URL}watch/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
+        Channellink =f"https://t.me/movies_x_store"
         online_link = f"{Var.URL}{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
        
         msg_text ="""
@@ -144,7 +145,7 @@ async def channel_receive_handlers(c :Client, m :Message):
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([
                 [InlineKeyboardButton("🖥️  ꜱᴛʀᴇᴀᴍ Mᴏᴠɪᴇ  🖥️", url=stream_link)],
-                [InlineKeyboardButton("📌 ᴊᴏɪɴ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ 📌", url=https://t.me/Movies_x_store)],
+                [InlineKeyboardButton("📌 ᴊᴏɪɴ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ 📌", url=ChannelLink)],
                 [InlineKeyboardButton('📥  ᴅᴏᴡɴʟᴏᴀᴅ Mᴏᴠɪᴇ  📥', url=online_link)]])
         )
     except FloodWait as e:
