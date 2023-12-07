@@ -11,6 +11,7 @@ class Var(object):
     API_ID = int(getenv('API_ID', '7988735'))
     API_HASH = str(getenv('API_HASH', '8339b7684eb7f4653ed032d4828ebf89'))
     BOT_TOKEN = str(getenv('BOT_TOKEN', ''))
+    MAINCHANNEL =str(getenv('MAINCHANNEL', 'https://t.me/Movies_x_store'))
     name = str(getenv('name', 'Movies-X-Store'))
     SLEEP_THRESHOLD = int(getenv('SLEEP_THRESHOLD', '60'))
     WORKERS = int(getenv('WORKERS', '15'))
