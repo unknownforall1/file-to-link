@@ -12,7 +12,7 @@ START_TEXT = """ ʏᴏᴜʀ  ᴛᴇʟᴇɢʀᴀᴍ  ᴅᴄ  ɪꜱ : `{}`  """
 
 
 
-@StreamBot.on_message(filters.private & filters.regex("Movie-Search-Grp"))
+@StreamBot.on_message(filters.private & filters.regex("Movie Grp"))
 async def start(bot, update):
     await update.reply_text(
         text="""Join In Group And Send Name Of Movie""",
@@ -20,13 +20,28 @@ async def start(bot, update):
         quote=True,
         reply_markup=InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("👨‍💻 Join Here", url="https://t.me/+aEYTJtwZpalmM2Jl")]
+                [InlineKeyboardButton("👨‍💻 Join Here", url="https://t.me/MoviesSearchingGroup")]
                 
             ]
         )
     )
     
-    
+
+@StreamBot.on_message(filters.private & filters.regex("Join📢"))
+async def start(bot, update):
+    await update.reply_text(
+        text="""This Bot Is Owned By @botXhub""",
+        disable_web_page_preview=True,
+        quote=True,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("👨‍💻 Join Here", url="https://t.me/botxhub")]
+                
+            ]
+        )
+    )
+
+
 @StreamBot.on_message(filters.private & filters.regex("list"))
 async def list(l, m):
     LIST_MSG = " ʜᴇʏ {},\n\nHere is a list of all my commands \n \n 1 . `/start` \n 2. `/help` \n 3. `/ping` \n 4. `/status` \n  "
