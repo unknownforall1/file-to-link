@@ -61,7 +61,7 @@ async def private_receive_handler(c: Client, m: Message):
             if user.status == "kicked":
                 await c.send_message(
                     chat_id=m.chat.id,
-                    text="You are banned!\n\n  **Contact Developer [Don](https://telegram.me/movie_without_verify) he will help you.**",
+                    text="You are banned!\n\n  **Contact Developer [Don](https://telegram.me/botxhub) he will help you.**",
                     
                     disable_web_page_preview=True
                 )
@@ -84,7 +84,7 @@ async def private_receive_handler(c: Client, m: Message):
             await m.reply_text(e)
             await c.send_message(
                 chat_id=m.chat.id,
-                text="**sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ. ᴄᴏɴᴛᴀᴄᴛ ᴍʏ [ʙᴏss](https://telegram.me/don_owner)**",
+                text="**sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ. ᴄᴏɴᴛᴀᴄᴛ ᴍʏ [ʙᴏss](https://telegram.me/UNKNOWNforall)**",
                 
                 disable_web_page_preview=True)
             return
@@ -153,7 +153,7 @@ async def channel_receive_handler(bot, broadcast):
 
 
 
-@StreamBot.on_message((filters.channel | filters.group ) & (filters.document | filters.video | filters.audio | filters.photo) , group=4)
+@StreamBot.on_message((filters.channel | filters.group ) & (filters.document | filters.video ) , group=4)
 async def receive_handler(c: Client, m: Message):
     try:
         log_msg = await m.forward(chat_id=Var.BIN_CHANNEL)
@@ -171,7 +171,7 @@ async def receive_handler(c: Client, m: Message):
 <b> By </b> @Movies_X_store """
 
         await log_msg.reply_text(text=f"**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True,  quote=True)
-        await m.reply_text(
+        await m.edit_message_reply_markup(
             text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
             quote=True,
             disable_web_page_preview=True,
