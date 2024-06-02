@@ -171,7 +171,7 @@ async def receive_handler(c: Client, m: Message):
 <b> By </b> @Movies_X_store """
 
         await log_msg.reply_text(text=f"**Stream ʟɪɴᴋ :** {stream_link}", disable_web_page_preview=True,  quote=True)
-        await m.edit_message_reply_markup(
+        await m.edit_caption(
             text=msg_text.format(get_name(log_msg), humanbytes(get_media_file_size(m)), online_link, stream_link),
             quote=True,
             disable_web_page_preview=True,
