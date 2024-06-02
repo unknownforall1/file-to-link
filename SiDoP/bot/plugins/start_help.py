@@ -42,7 +42,7 @@ async def start(b, m):
             text="send file/video"
         )
         await db.add_user(m.from_user.id)
-        await pass_db.add_user_pass(m.from_user.id, MOVIESXSTORE)
+      #  await pass_db.add_user_pass(m.from_user.id, MOVIESXSTORE)
         await b.send_message(
             Var.BIN_CHANNEL,
             f"#𝐍𝐞𝐰𝐔𝐬𝐞𝐫\n\n**᚛› 𝐍𝐚𝐦𝐞 - [{m.from_user.first_name}](tg://user?id={m.from_user.id})**"
