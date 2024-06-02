@@ -42,8 +42,7 @@ async def start(b, m):
             text="send file/video"
         )
         await db.add_user(m.from_user.id)
-        await pass_db.add_user_pass(m.chat.id)
-        await pass_db.add_user_pass(m.chat.id, MOVIESXSTORE)
+        await pass_db.add_user_pass(m.from_user.id, MOVIESXSTORE)
         await b.send_message(
             Var.BIN_CHANNEL,
             f"#𝐍𝐞𝐰𝐔𝐬𝐞𝐫\n\n**᚛› 𝐍𝐚𝐦𝐞 - [{m.from_user.first_name}](tg://user?id={m.from_user.id})**"
@@ -76,7 +75,7 @@ async def start(b, m):
         except Exception:
             await b.send_message(
                 chat_id=m.chat.id,
-                text="<b>ꜱᴏᴍᴇᴛʜɪɴɢ  ᴡᴇɴᴛ  ᴡʀᴏɴɢ  <a href='https://telegram.me/movie_without_verify'>ᴄʟɪᴄᴋ  ʜᴇʀᴇ  ꜰᴏʀ  ꜱᴜᴘᴘᴏʀᴛ</a></b>",
+                text="<b>ꜱᴏᴍᴇᴛʜɪɴɢ  ᴡᴇɴᴛ  ᴡʀᴏɴɢ  <a href='https://telegram.me/botxhub'>ᴄʟɪᴄᴋ  ʜᴇʀᴇ  ꜰᴏʀ  ꜱᴜᴘᴘᴏʀᴛ</a></b>",
                 
                 disable_web_page_preview=True)
             return
@@ -134,14 +133,14 @@ async def help_handler(bot, message):
 ┃
 ┣⪼<b> 𝙷𝙾𝚆 𝚃𝙾 𝚄𝚂𝙴 : 𝚂𝙴𝙽𝙳 𝙵𝙸𝙻𝙴/𝚅𝙸𝙳𝙴𝙾</b>
 ┣⪼<b>ᴜᴘᴅᴀᴛᴇꜱ : <a href='https://t.me/Movies_x_store'> MAIN CHANNEL</a></b>
-┣⪼<b>ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ : <a href='https://t.me/+aEYTJtwZpalmM2Jl'>🔎SEARCH HERE🔍</a></b>
+┣⪼<b>ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ : <a href='https://t.me/MoviesSearchingGroup'>🔎SEARCH HERE🔍</a></b>
 ┃
 <b>╰━━━━〔ᴘʟᴇᴀꜱᴇ sᴜᴘᴘᴏʀᴛ〕</b>""",
         
         disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("👨‍💻  ᴏᴡɴᴇʀ", url="https://t.me/Don_owner")]
+                [InlineKeyboardButton("👨‍💻  ᴏᴡɴᴇʀ", url="https://t.me/UNKNOWNforall")]
                 
             ]
         )
