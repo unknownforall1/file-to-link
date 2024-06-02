@@ -16,8 +16,8 @@ from pyrogram.types import ReplyKeyboardMarkup
 if MY_PASS:
             buttonz=ReplyKeyboardMarkup(
             [
-                ["start⚡️","help📚"],
-                ["Movie-Search-Grp","status📊"]
+                ["start⚡️","help📚", "Join📢"],
+                ["Movie Grp","status📊"]
                         
             ],
             resize_keyboard=True
@@ -37,10 +37,11 @@ else:
 @StreamBot.on_message((filters.private & filters.command("start") | filters.regex('start⚡️')))
 async def start(b, m):
     if not await db.is_user_exist(m.from_user.id):
-        await b.send_message(
-            chat_id=m.chat.id,
-            text="send file/video"
-        )
+        await StreamBot.send_photo(
+        chat_id=m.chat.id,
+        photo ="https://graph.org/file/d7fda0806e439dcca9632.jpg",
+        caption =f'{m.from_user.mention(style="md")},\n\nɪ  ᴀᴍ  ᴀɴ  ᴀᴅᴠᴀɴᴄᴇ  ꜰɪʟᴇ  ᴛᴏ  ʟɪɴᴋ  ɢᴇɴᴇʀᴀᴛᴏʀ  ʙᴏᴛ.\n\nᴊᴜꜱᴛ  ꜱᴇɴᴅ  ᴍᴇ  ᴀɴʏ  ꜰɪʟᴇ  ᴀɴᴅ  ɢᴇᴛ  ᴀ  ᴅɪʀᴇᴄᴛ  ᴅᴏᴡɴʟᴏᴀᴅ  ʟɪɴᴋ  ᴀɴᴅ  ꜱᴛʀᴇᴀᴍᴀʙʟᴇ  ʟɪɴᴋ.',
+        reply_markup=buttonz)
         await db.add_user(m.from_user.id)
       #  await pass_db.add_user_pass(m.from_user.id, MOVIESXSTORE)
         await b.send_message(
@@ -131,7 +132,7 @@ async def help_handler(bot, message):
 
 <b>╭━━━━〔ꜰɪʟᴇ ᴛᴏ ʟɪɴᴋ ʙᴏᴛ〕</b>
 ┃
-┣⪼<b> 𝙷𝙾𝚆 𝚃𝙾 𝚄𝚂𝙴 : 𝚂𝙴𝙽𝙳 𝙵𝙸𝙻𝙴/𝚅𝙸𝙳𝙴𝙾</b>
+┣⪼<b> 𝙷𝙾𝚆 𝚃𝙾 𝚄𝚂𝙴 : Just 𝚂𝙴𝙽𝙳 𝙵𝙸𝙻𝙴/𝚅𝙸𝙳𝙴𝙾</b>
 ┣⪼<b>ᴜᴘᴅᴀᴛᴇꜱ : <a href='https://t.me/Movies_x_store'> MAIN CHANNEL</a></b>
 ┣⪼<b>ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ : <a href='https://t.me/MoviesSearchingGroup'>🔎SEARCH HERE🔍</a></b>
 ┃
